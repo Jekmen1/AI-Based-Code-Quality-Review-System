@@ -12,9 +12,13 @@ async def upload_code(file: UploadFile = File(...), db: Session = Depends(get_db
 
     comments = analyze_code(code)
 
-    code_review = CodeReview(file_name=file.filename, code=code, review_comments=comments)
+    code_review = CodeReview(file_name=file.filename, code=code, review_comments=str(comments))
     db.add(code_review)
     db.commit()
     db.refresh(code_review)
 
-    return {"filename": file.filename, "review_comments": comments}
+    return {
+        "filename": file.filename,
+        "review_comments": comments
+    }
+
