@@ -8,6 +8,8 @@ router = APIRouter()
 
 @router.post("/review/")
 async def upload_code(file: UploadFile = File(...), db: Session = Depends(get_db)):
+    if not file.filename.endswith('.py'):
+        raise HTTPException(status_code=400, detail="Invalid file type. Please upload a Python file.")
     code = (await file.read()).decode('utf-8')
 
     comments = analyze_code(code)
