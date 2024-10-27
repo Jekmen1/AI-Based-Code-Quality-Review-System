@@ -3,7 +3,7 @@ import google.generativeai as genai
 
 genai.configure(api_key="key")
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-1.5-pro-001")
 
 def run_pylint(code: str) -> dict:
     with open('temp_code.py', 'w') as f:
@@ -34,17 +34,17 @@ def run_pylint(code: str) -> dict:
 
 def get_ai_review(code: str) -> str:
     try:
-        # Generate content from the model
         response = model.generate_content(
             f"Analyze the following code and provide feedback:\n\n{code}",
             generation_config=genai.types.GenerationConfig(
-                candidate_count=1,
-                stop_sequences=["x"],
-                max_output_tokens=200,
-                temperature=1.0
+                temperature =1,
+                top_p=0.95,
+                top_k= 64,
+                max_output_tokens=2000,
+                response_mime_type="text/plain"
             )
         )
-
+        print(code)
         print("AI Response:", response)
 
         if response.candidates and hasattr(response.candidates[0], 'content'):
