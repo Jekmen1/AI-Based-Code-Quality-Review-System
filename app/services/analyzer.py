@@ -12,7 +12,6 @@ def run_pylint(code: str) -> dict:
     output = result.stdout.decode()
 
     errors = []
-    score = "N/A"
     for line in output.split('\n'):
         if line.startswith('temp_code.py:'):
             parts = line.split(':')
@@ -23,12 +22,10 @@ def run_pylint(code: str) -> dict:
                 'type': parts[4].split()[0] if len(parts) > 4 else 'Unknown'
             }
             errors.append(error)
-        elif 'rated at' in line:
-            score = line.split('rated at')[1].strip().split(' ')[0]
+
 
     return {
         'errors': errors,
-        'score': score
     }
 
 
@@ -66,7 +63,6 @@ def analyze_code(code: str) -> dict:
     return {
         "static_analysis": {
             "errors": pylint_output['errors'],
-            "score": pylint_output['score'],
             "summary": f"Your code has {len(pylint_output['errors'])} issues."
         },
         "ai_review": ai_review
