@@ -69,6 +69,4 @@ def analyze_code(code: str) -> dict:
     }
 
 
-        "ai_review": ai_review
-    }
 
