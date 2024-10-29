@@ -23,6 +23,10 @@ def run_pylint(code: str) -> dict:
                 'type': parts[4].split()[0] if len(parts) > 4 else 'Unknown'
             }
             errors.append(error)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5549d5c44fec56b2498b8b7e56274ba38489ed1b
 
     return {
         'errors': errors,
@@ -62,5 +66,10 @@ def analyze_code(code: str) -> dict:
             "errors": pylint_output['errors'],
             "summary": f"Your code has {len(pylint_output['errors'])} issues."
         },
+<<<<<<< HEAD
     }
 
+=======
+        "ai_review": ai_review
+    }
+>>>>>>> 5549d5c44fec56b2498b8b7e56274ba38489ed1b
