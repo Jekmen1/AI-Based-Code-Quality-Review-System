@@ -31,6 +31,7 @@ model = genai.GenerativeModel("gemini-1.5-pro-001")
 #     }
 
 
+
 def get_ai_review(code: str) -> str:
     try:
         response = model.generate_content(
@@ -66,5 +67,9 @@ def get_ai_review(code: str) -> str:
 #             "summary": f"Your code has {len(pylint_output['errors'])} issues."
 #         },
 #     }
+
+
+
+
 
 
