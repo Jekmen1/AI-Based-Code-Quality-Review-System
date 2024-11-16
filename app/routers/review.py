@@ -59,6 +59,7 @@ async def upload_code_pylint(file: UploadFile = File(...), db: Session = Depends
 
     code = (await file.read()).decode('utf-8')
     pylint_output = run_pylint_code(code)
+    # print(pylint_output)
 
     code_review = CodeReview(
         file_name=file.filename,

@@ -9,7 +9,6 @@ model = genai.GenerativeModel("gemini-1.5-pro-001")
 
 
 
-
 def get_ai_review(code: str) -> str:
     try:
         response = model.generate_content(
