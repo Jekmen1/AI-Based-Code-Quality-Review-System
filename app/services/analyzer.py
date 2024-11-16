@@ -7,28 +7,6 @@ genai.configure(api_key="key")
 model = genai.GenerativeModel("gemini-1.5-pro-001")
 
 
-# def run_pylint(code: str) -> dict:
-#     with open('temp_code.py', 'w') as f:
-#         f.write(code)
-#     result = subprocess.run(['pylint', "temp_code.py"], stdout=subprocess.PIPE)
-#     output = result.stdout.decode()
-#
-#     errors = []
-#     for line in output.split('\n'):
-#         if line.startswith('temp_code.py:'):
-#             parts = line.split(':')
-#             error = {
-#                 'line': int(parts[1]),
-#                 'message': parts[3].strip(),
-#                 'type': parts[4].split()[0] if len(parts) > 4 else 'Unknown'
-#             }
-#             errors.append(error)
-#
-#
-#
-#     return {
-#         'errors': errors,
-#     }
 
 
 
@@ -55,19 +33,6 @@ def get_ai_review(code: str) -> str:
             return "No AI feedback available."
     except Exception as e:
         return f"AI review failed: {str(e)}"
-
-
-# def analyze_code(code: str) -> dict:
-#     pylint_output = run_pylint(code)
-#
-#
-#     return {
-#         "static_analysis": {
-#             "errors": pylint_output['errors'],
-#             "summary": f"Your code has {len(pylint_output['errors'])} issues."
-#         },
-#     }
-
 
 
 
